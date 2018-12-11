@@ -1,7 +1,24 @@
-<div class="grid grid-pad">
-  <a *ngFor="let category of categories" class="col-1-4" routerLink="/movies/{{category.id}}">
+<!-- <div *ngIf="categories.numberOfElements>0 | async; else loading"> -->
+<div>
+  <a *ngFor="let category of categories | async" (click)="getMovies(categoryId = category.id)" class="col-1-4">
     <div class="module">
       <h4>{{category.name}}</h4>
     </div>
   </a>
+
+
 </div>
+<br><br>
+<div>
+  <ul class="movies">
+    <li *ngFor="let movie of movies | async">
+      <a routerLink="/detail/{{categoryId}}/{{movie.id}}">
+        <span class="badge">{{movie.id}}</span> {{movie.title}}
+      </a>
+      <button class="delete" title="delete movie" (click)="delete(movie.id,categoryId)">x</button>
+    </li>
+  </ul>
+</div>
+
+<!-- </div> -->
+<ng-template #loading>Loading Data...</ng-template>

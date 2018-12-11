@@ -1,0 +1,16 @@
+<div *ngIf="movie">
+  <h2>{{movie.title | uppercase}} Details</h2>
+  <div><span>id: </span>{{movie.id}}</div>
+  <div>
+    <label>title:
+      <input #title [(ngModel)]="movie.title" />
+    </label>
+  </div>
+  <div>
+    <label>description:
+      <input #description [(ngModel)]="movie.description" placeholder="description" />
+    </label>
+  </div>
+  <button (click)="goBack()">go back</button>
+  <button (click)="update()">save</button>
+</div>
